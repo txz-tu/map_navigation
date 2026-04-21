@@ -1,25 +1,37 @@
 # map_navigation
+
 仅用于实现PC端命令行终端slam建图（cyberdog2）
+
 导航功能相关接口：
 
 启动任务：
+
 接口形式：ros action
+
 接口名字："start_algo_task"
+
 接口文件：protocol/ros/srv/Navigation.action
 
 关闭任务：
+
 接口形式： ros service
+
 接口名字： "stop_algo_task"
+
 接口文件：protocol/ros/srv/StopAlgoTask.srv
 
 任务状态查询
+
 接口形式： ros topic
+
 接口名字： "algo_task_status"
+
 接口文件：protocol/ros/msg/AlgoTaskStatus.msg
 
 实现操作：
 
 1、启动环境
+
 先登录机器狗终端:
 
 ssh mi@xxx.xxx.xxx.xxx(机器狗的IP地址)
@@ -27,17 +39,23 @@ ssh mi@xxx.xxx.xxx.xxx(机器狗的IP地址)
 然后执行：
 
 source /opt/ros2/cyberdog/setup.bash
+
 （如遇报错：xxxx not found，可以暂时先不管，这个报错不影响后续使用。）
+
 如果你的机器狗上有工作空间并且已经编译过，再执行：
 
 source ~/cyberdog_ws_rolling/install/setup.bash
+
 如果这句提示 No such file or directory，先不用管，说明你当前主要用的是系统安装包。
 
 2、检查导航包能不能找到：
+
 按顺序输入以下三条指令
 
 ros2 pkg list | grep navigation_bringup
+
 ros2 pkg list | grep algorithm_manager
+
 ros2 pkg list | grep protocol
 
 如果能看到这三个包，则继续。
@@ -51,16 +69,21 @@ CyberDog2 通常会把 topic 放到一个命名空间下面，例如：
 你需要执行以下指令：找到机械狗的命名空间
 
 ros2 action list | grep start_algo_task
+
 ros2 service list | grep stop_algo_task
+
 ros2 service list | grep -E "start_mapping|stop_mapping|get_label|outdoor"
+
 你应该能看到类似：
 
 /mi_desktop_xxx/start_algo_task
+
 /mi_desktop_xxx/stop_algo_task
 
 就设置：
 
 export DOG_NS=mi_desktop_xxx
+
 export NS_PREFIX=/DOG_NS
 
 4、如果找不到第3步的节点，需要重新启动导航总 launch
@@ -74,13 +97,17 @@ ros2 launch navigation_bringup navigation.launch.py namespace:=$DOG_NS
 如果新开了一个终端，同样先 source：
 
 source /opt/ros2/cyberdog/setup.bash
+
 source ~/cyberdog_ws_rolling/install/setup.bash 2>/dev/null || true
+
 export DOG_NS=你的命名空间
+
 export NS_PREFIX=/$DOG_NS
 
 如果没有命名空间，就：
 
 export DOG_NS=
+
 export NS_PREFIX=
 
 5、 开始实验室建图
