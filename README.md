@@ -30,16 +30,16 @@
 
 实现操作：
 
-1、启动环境
+#1、启动环境
 
 先登录机器狗终端:
 
 ssh mi@xxx.xxx.xxx.xxx(机器狗的IP地址)
 
 然后执行：
-
+'''bash
 source /opt/ros2/cyberdog/setup.bash
-
+'''
 （如遇报错：xxxx not found，可以暂时先不管，这个报错不影响后续使用。）
 
 如果你的机器狗上有工作空间并且已经编译过，再执行：
