@@ -1,10 +1,29 @@
 # map_navigation
 仅用于实现PC端命令行终端slam建图（cyberdog2）
+导航功能相关接口：
+
+启动任务：
+接口形式：ros action
+接口名字："start_algo_task"
+接口文件：protocol/ros/srv/Navigation.action
+
+关闭任务：
+接口形式： ros service
+接口名字： "stop_algo_task"
+接口文件：protocol/ros/srv/StopAlgoTask.srv
+
+任务状态查询
+接口形式： ros topic
+接口名字： "algo_task_status"
+接口文件：protocol/ros/msg/AlgoTaskStatus.msg
+
+实现操作：
 
 1、启动环境
 先登录机器狗终端:
 
 ssh mi@xxx.xxx.xxx.xxx(机器狗的IP地址)
+
 然后执行：
 
 source /opt/ros2/cyberdog/setup.bash
@@ -20,6 +39,7 @@ source ~/cyberdog_ws_rolling/install/setup.bash
 ros2 pkg list | grep navigation_bringup
 ros2 pkg list | grep algorithm_manager
 ros2 pkg list | grep protocol
+
 如果能看到这三个包，则继续。
 
 3、确认机器狗命名空间
