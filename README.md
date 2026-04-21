@@ -103,7 +103,7 @@ export NS_PREFIX=
 ros2 launch navigation_bringup navigation.launch.py namespace:=$DOG_NS
 ```
 
-> ⏳ 注意：
+>  注意：
 > - algorithm_manager 可能需要 **2分钟左右启动**
 > - 不要过早关闭
 
@@ -119,7 +119,7 @@ export NS_PREFIX=/$DOG_NS
 
 ---
 
-### 5️⃣ 开始建图（室内激光 SLAM）
+### 5️ 开始建图（室内激光 SLAM）
 
 ```bash
 ros2 action send_goal "${NS_PREFIX}/start_algo_task" \
